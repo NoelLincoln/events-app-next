@@ -5,7 +5,9 @@ import logo from '@/public/assets/images/logo.png';
 import NavItems from '@/components/shared/NavItems';
 import { Separator } from '@/components/ui/separator';
 
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet } from '@/components/ui/sheet';
+import { SheetTrigger } from '@/components/ui/sheet';
+import { SheetContent } from '@/components/ui/sheet';
 
 const MobileNav = () => {
   return (

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import logo from '@/public/assets/images/logo.png';
-// import logo from '../../public/assets/images/logo.png';
 import Link from 'next/link';
 import { SignedOut } from '@clerk/nextjs';
 import { SignedIn } from '@clerk/nextjs';
@@ -9,7 +8,7 @@ import NavItems from './NavItems';
 import MobileNav from './MobileNav';
 import { Button } from '@/components/ui/button';
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
@@ -37,5 +36,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
