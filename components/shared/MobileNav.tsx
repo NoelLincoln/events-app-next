@@ -5,14 +5,7 @@ import logo from '@/public/assets/images/logo.png';
 import NavItems from '@/components/shared/NavItems';
 import { Separator } from '@/components/ui/separator';
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const MobileNav = () => {
   return (
@@ -28,12 +21,7 @@ const MobileNav = () => {
           />
         </SheetTrigger>
         <SheetContent className="flex flex-col gap-6 bg-white md:hidden">
-          <Image
-            src={logo}
-            alt="logo"
-            width={128}
-            height={38}
-          />
+          <Image src={logo} alt="logo" width={128} height={38} />
           <Separator />
           <NavItems />
         </SheetContent>
