@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Header } from '@/components/shared/Header'; // Adjust the path to your Header component
+import Header from '@/components/shared/Header'; // Adjust the path to your Header component
 
 // Mock dependencies (SignedIn, SignedOut, UserButton, etc.)
 jest.mock('@clerk/nextjs', () => ({
