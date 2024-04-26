@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { headerLinks } from '@/constants';
+import { headerLinks } from '../../constants/index';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 const NavItems = () => {

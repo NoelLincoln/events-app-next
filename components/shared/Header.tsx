@@ -1,11 +1,11 @@
-import Image from "next/image"
-import logo from "@/public/assets/images/logo.png"
-import Link from "next/link"
-import { SignedOut } from "@clerk/nextjs";
-import { SignedIn } from "@clerk/nextjs";
-import { UserButton } from "@clerk/nextjs";
-import NavItems from "./NavItems";
-import MobileNav from "./MobileNav";
+import Image from 'next/image';
+import logo from '@/public/assets/images/logo.png';
+import Link from 'next/link';
+import { SignedOut } from '@clerk/nextjs';
+import { SignedIn } from '@clerk/nextjs';
+import { UserButton } from '@clerk/nextjs';
+import NavItems from './NavItems';
+import MobileNav from './MobileNav';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
@@ -27,7 +27,7 @@ const Header = () => {
           </SignedIn>
 
           <SignedOut>
-            <Button asChild className="rounded-full size-lg">
+            <Button asChild className="size-lg rounded-full">
               <Link href="/sign-in">Login</Link>
             </Button>
           </SignedOut>
@@ -35,6 +35,5 @@ const Header = () => {
       </div>
     </header>
   );
-}
-
-export default Header
+};
+export default Header;
