@@ -13,7 +13,7 @@
     "lint:strict": "next lint '**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write '**/*.{js,jsx,json,ts,tsx,scss,css,md}'",
     "prepare": "husky",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}'"
+    "format": "prettier --write 'app/**/*.{js,jsx,ts,tsx,css,html}'"
   },
   "dependencies": {
     "@babel/preset-react": "^7.24.1",
