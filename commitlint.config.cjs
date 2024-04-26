@@ -4,7 +4,7 @@ module.exports = {
   rules: {
     'header-min-length': [2, 'always', 10],
     'header-case-start-capital': [2, 'always'],
-    'header-end-period': [2, 'always'],
+    // 'header-end-period': [2, 'always'],
   },
   plugins: [
     {
@@ -15,9 +15,9 @@ module.exports = {
             'Commit message must start with a capital letter',
           ];
         },
-        'header-end-period': ({ header }) => {
-          return [/\.$/.test(header), 'Commit message must end with a period'];
-        },
+        // 'header-end-period': ({ header }) => {
+        //   return [/\.$/.test(header), 'Commit message must end with a period'];
+        // },
       },
     },
   ],
