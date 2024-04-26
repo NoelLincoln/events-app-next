@@ -1,0 +1,36 @@
+name: Build and Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: '20.9.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to prod url
+        # main is the branch name where new code is pushed
+        if: github.ref == 'refs/heads/main'
+        uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: 'tech-tide-meetups'
+          # build_dir: 'your-build-directory' # Change this to your build directory if different from the root
