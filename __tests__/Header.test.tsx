@@ -2,6 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Header from '@/components/shared/Header'; // Adjust the path to your Header component
 
+jest.mock('query-string', () => ({
+  __esModule: true,
+  default: {
+    parse: jest.fn(),
+    stringify: jest.fn(),
+  },
+}));
+
 // Mock dependencies (SignedIn, SignedOut, UserButton, etc.)
 jest.mock('@clerk/nextjs', () => ({
   SignedIn: ({ children }) => children,
