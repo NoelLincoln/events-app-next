@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "typeRoots": ["../node_modules/@types", "./node_modules/@types", "../node_modules/@testing-library"],
+    "typeRoots": [
+      "../node_modules/@types",
+      "./node_modules/@types",
+      "../node_modules/@testing-library"
+    ],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
