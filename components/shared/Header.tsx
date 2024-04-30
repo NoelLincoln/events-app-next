@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logo from '@/public/assets/images/logo.svg';
+import logo from '../../public/assets/images/logo.svg';
 import Link from 'next/link';
 import { SignedOut } from '@clerk/nextjs';
 import { SignedIn } from '@clerk/nextjs';

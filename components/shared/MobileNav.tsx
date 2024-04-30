@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import menu_icon from '@/public/assets/icons/menu.svg';
+import menu_icon from '../../public/assets/icons/menu.svg';
 import logo from '@/public/assets/images/logo.svg';
 import NavItems from '@/components/shared/NavItems';
 import { Separator } from '@/components/ui/separator';
