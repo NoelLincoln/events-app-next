@@ -31,17 +31,20 @@ const EventForm = ({ userId, type }: EventFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: 'Noel',
-      userId,
-      type,
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    // Access userId and type here
+    console.log('User ID:', userId);
+    console.log('Form Type:', type);
+
+    // Do something with the form values based on userId and type.
+    console.log(values);
     console.log(values);
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
