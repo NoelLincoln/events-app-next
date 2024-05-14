@@ -13,12 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
-});
+import { eventFormSchema } from '@/lib/validator';
 
 type EventFormProps = {
   userId: string;
@@ -27,15 +22,15 @@ type EventFormProps = {
 
 const EventForm = ({ userId, type }: EventFormProps) => {
   // 1. Define form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof eventFormSchema>>({
+    resolver: zodResolver(eventFormSchema),
     defaultValues: {
       username: 'Noel',
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof eventFormSchema>) {
     // Access userId and type here
     console.log('User ID:', userId);
     console.log('Form Type:', type);
