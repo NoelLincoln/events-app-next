@@ -45,7 +45,9 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
           ))}
 
         <AlertDialog>
-          <AlertDialogTrigger>Open</AlertDialogTrigger>
+          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">
+            Open
+          </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
