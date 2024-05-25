@@ -26,9 +26,7 @@ export function FileUploader({
     },
     [setFiles, onFieldChange],
   );
-
-  console.log(url);
-
+  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     // eslint-disable-next-line no-constant-condition
