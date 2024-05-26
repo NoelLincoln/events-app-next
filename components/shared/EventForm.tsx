@@ -28,12 +28,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Checkbox } from '../ui/checkbox';
 import { useRouter } from 'next/navigation';
 import { createEvent, updateEvent } from '@/lib/actions/event.action';
-import IEvent from '@/lib/mongodb/database/models/event.model';
+import type { IEvent } from '@/lib/mongodb/database/models/event.model';
 
 type EventFormProps = {
   userId: string;
   type: 'Create' | 'Update';
-  event?: typeof IEvent;
+  event?: IEvent;
   eventId?: string;
 };
 
