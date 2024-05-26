@@ -33,7 +33,7 @@ import IEvent from '@/lib/mongodb/database/models/event.model';
 type EventFormProps = {
   userId: string;
   type: 'Create' | 'Update';
-  event?: IEvent;
+  event?: typeof IEvent;
   eventId?: string;
 };
 
