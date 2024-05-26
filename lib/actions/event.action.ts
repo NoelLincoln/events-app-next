@@ -7,7 +7,7 @@ import Event from '@/lib/mongodb/database/models/event.model';
 import User from '@/lib/mongodb/database/models/user.model';
 // import Category from '@/lib/mongodb/database/models/category.model';
 import { handleError } from '@/lib/utils';
-import { CreateEventParams, UpdateEventParams } from '@/types'
+import { CreateEventParams, UpdateEventParams } from '@/types';
 
 // CREATE
 export async function createEvent({ userId, event, path }: CreateEventParams) {
