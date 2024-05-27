@@ -12,7 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'TechTide MeetUps',
   description: 'Manage and view events around you',
-  icons: { icon: 'assets/images/logo.svg' },
+  icons: { icon: 'assets/images/logo.png' },
 };
 
 export default function RootLayout({
@@ -28,4 +28,4 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
-// fix clerk credentials
+// fix github auth token

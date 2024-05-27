@@ -6,6 +6,3 @@ node_modules
 next-env.d.ts
 next.config.ts
 yarn.lock
-components/ui
-app/api
-app/components/shared/FileUploader.tsx
