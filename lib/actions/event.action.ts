@@ -20,7 +20,7 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
     const newEvent = await Event.create({
       ...event,
       category: event.categoryId,
-      organizer: userId,
+      organizer: userId.userid,
     });
     revalidatePath(path);
 

@@ -31,7 +31,7 @@ import { createEvent, updateEvent } from '@/lib/actions/event.action';
 import type { IEvent } from '@/lib/mongodb/database/models/event.model';
 
 type EventFormProps = {
-  userId: string;
+  userId: { userid: string };
   type: 'Create' | 'Update';
   event?: IEvent;
   eventId?: string;
