@@ -34,7 +34,7 @@ export type CreateEventParams = {
 };
 
 export type UpdateEventParams = {
-  userId: string;
+  userId: { userid: string };
   event: {
     _id: string;
     title: string;
