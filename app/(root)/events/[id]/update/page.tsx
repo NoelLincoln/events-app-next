@@ -5,7 +5,7 @@ import { auth } from '@clerk/nextjs';
 const UpdateEvent = () => {
   const { sessionClaims } = auth();
 
-  const userId = sessionClaims?.userId as string;
+  const userId = sessionClaims?.userId as { userid: string };
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
