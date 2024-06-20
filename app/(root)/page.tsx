@@ -45,7 +45,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
         id="events"
         className="wrapper my-8 flex flex-col gap-8 md:gap-12"
       >
-        <h2 className="h2-bold">⁂ knowledge sharing and networking ⁂</h2>
+        <h2 className="h2-bold text-center">
+          ⁂ knowledge sharing and networking ⁂
+        </h2>
         <div className=" flex w-full flex-col gap-5 md:flex-row"></div>
 
         <Collection

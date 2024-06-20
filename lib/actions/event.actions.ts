@@ -7,10 +7,14 @@ import Event from '@/lib/mongodb/database/models/event.model';
 import User from '@/lib/mongodb/database/models/user.model';
 import Category from '@/lib/mongodb/database/models/category.model';
 import { handleError } from '@/lib/utils';
+
 import {
   CreateEventParams,
   UpdateEventParams,
+  DeleteEventParams,
   GetAllEventsParams,
+  GetEventsByUserParams,
+  GetRelatedEventsByCategoryParams,
 } from '@/types';
 
 const getCategoryByName = async (name: string) => {
@@ -48,6 +52,21 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
   }
 }
 
+// GET ONE EVENT BY ID
+export async function getEventById(eventId: string) {
+  try {
+    await connectToDatabase();
+
+    const event = await populateEvent(Event.findById(eventId));
+
+    if (!event) throw new Error('Event not found');
+
+    return JSON.parse(JSON.stringify(event));
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 // UPDATE
 export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   try {
@@ -71,16 +90,13 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   }
 }
 
-// GET ONE EVENT BY ID
-export async function getEventById(eventId: string) {
+// DELETE
+export async function deleteEvent({ eventId, path }: DeleteEventParams) {
   try {
     await connectToDatabase();
 
-    const event = await populateEvent(Event.findById(eventId));
-
-    if (!event) throw new Error('Event not found');
-
-    return JSON.parse(JSON.stringify(event));
+    const deletedEvent = await Event.findByIdAndDelete(eventId);
+    if (deletedEvent) revalidatePath(path);
   } catch (error) {
     handleError(error);
   }
@@ -110,6 +126,67 @@ export async function getAllEvents({
     };
 
     const skipAmount = (Number(page) - 1) * limit;
+    const eventsQuery = Event.find(conditions)
+      .sort({ createdAt: 'desc' })
+      .skip(skipAmount)
+      .limit(limit);
+
+    const events = await populateEvent(eventsQuery);
+    const eventsCount = await Event.countDocuments(conditions);
+
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(eventsCount / limit),
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// GET EVENTS BY ORGANIZER
+export async function getEventsByUser({
+  userId,
+  limit = 6,
+  page,
+}: GetEventsByUserParams) {
+  try {
+    await connectToDatabase();
+
+    const conditions = { organizer: userId };
+    const skipAmount = (page - 1) * limit;
+
+    const eventsQuery = Event.find(conditions)
+      .sort({ createdAt: 'desc' })
+      .skip(skipAmount)
+      .limit(limit);
+
+    const events = await populateEvent(eventsQuery);
+    const eventsCount = await Event.countDocuments(conditions);
+
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(eventsCount / limit),
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// GET RELATED EVENTS: EVENTS WITH SAME CATEGORY
+export async function getRelatedEventsByCategory({
+  categoryId,
+  eventId,
+  limit = 3,
+  page = 1,
+}: GetRelatedEventsByCategoryParams) {
+  try {
+    await connectToDatabase();
+
+    const skipAmount = (Number(page) - 1) * limit;
+    const conditions = {
+      $and: [{ category: categoryId }, { _id: { $ne: eventId } }],
+    };
+
     const eventsQuery = Event.find(conditions)
       .sort({ createdAt: 'desc' })
       .skip(skipAmount)
