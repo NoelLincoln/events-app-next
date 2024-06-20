@@ -22,7 +22,8 @@ const getCategoryByName = async (name: string) => {
 };
 
 const populateEvent = (query: unknown) => {
-  return query
+  const typedQuery = query as mongoose.Query<Event>;
+  return typedQuery
     .populate({
       path: 'organizer',
       model: User,
