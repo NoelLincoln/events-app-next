@@ -1,5 +1,5 @@
 import React from 'react';
-import { getEventById } from '@/lib/actions/event.action';
+import { getEventById } from '@/lib/actions/event.actions';
 import { SearchParamProps } from '@/types';
 import { formatDateTime } from '@/lib/utils';
 import Image from 'next/image';
