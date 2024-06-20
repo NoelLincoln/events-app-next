@@ -5,9 +5,19 @@ import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb/database';
 import Event from '@/lib/mongodb/database/models/event.model';
 import User from '@/lib/mongodb/database/models/user.model';
-// import Category from '@/lib/mongodb/database/models/category.model';
+import Category from '@/lib/mongodb/database/models/category.model';
 import { handleError } from '@/lib/utils';
 import { CreateEventParams, UpdateEventParams } from '@/types';
+
+const populateEvent = (query: unknown) => {
+  return query
+    .populate({
+      path: 'organizer',
+      model: User,
+      select: '_id firstName lastName',
+    })
+    .populate({ path: 'category', model: Category, select: '_id name' });
+};
 
 // CREATE
 export async function createEvent({ userId, event, path }: CreateEventParams) {
@@ -48,6 +58,21 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
     revalidatePath(path);
 
     return JSON.parse(JSON.stringify(updatedEvent));
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+// GET ONE EVENT BY ID
+export async function getEventById(eventId: string) {
+  try {
+    await connectToDatabase();
+
+    const event = await populateEvent(Event.findById(eventId));
+
+    if (!event) throw new Error('Event not found');
+
+    return JSON.parse(JSON.stringify(event));
   } catch (error) {
     handleError(error);
   }
