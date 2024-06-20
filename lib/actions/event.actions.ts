@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-
+import mongoose from 'mongoose';
 import { connectToDatabase } from '@/lib/mongodb/database';
 import Event from '@/lib/mongodb/database/models/event.model';
 import User from '@/lib/mongodb/database/models/user.model';
@@ -22,7 +22,7 @@ const getCategoryByName = async (name: string) => {
 };
 
 const populateEvent = (query: unknown) => {
-  const typedQuery = query as mongoose.Query<Event>;
+  const typedQuery = query as mongoose.Query<Event[], Event>;
   return typedQuery
     .populate({
       path: 'organizer',
