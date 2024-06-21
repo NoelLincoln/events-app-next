@@ -1,12 +1,25 @@
 import React from 'react';
-import { getEventById } from '@/lib/actions/event.actions';
+import {
+  getEventById,
+  getRelatedEventsByCategory,
+} from '@/lib/actions/event.actions';
 import { SearchParamProps } from '@/types';
 import { formatDateTime } from '@/lib/utils';
 import Image from 'next/image';
 import CheckoutButton from '@/components/shared/CheckoutButton';
+import Collection from '@/components/shared/Collection';
 
-const EventDetails = async ({ params: { id } }: SearchParamProps) => {
+const EventDetails = async ({
+  params: { id },
+  searchParams,
+}: SearchParamProps) => {
   const event = await getEventById(id);
+
+  const relatedEvents = await getRelatedEventsByCategory({
+    categoryId: event.category._id,
+    eventId: event._id,
+    page: searchParams.page as string,
+  });
 
   console.log(event);
   return (
@@ -91,6 +104,15 @@ const EventDetails = async ({ params: { id } }: SearchParamProps) => {
       {/* EVENTS with the same category */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold">Related Events</h2>
+        <Collection
+          data={relatedEvents?.data}
+          emptyTitle="No Events Found"
+          emptyStateSubtext="Come back later"
+          collectionType="All_Events"
+          limit={6}
+          page={1}
+          totalPages={relatedEvents?.totalPages}
+        />
       </section>
     </>
   );
