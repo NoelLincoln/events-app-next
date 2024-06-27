@@ -16,8 +16,6 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  console.log(event.organizer, 'From card component');
-
   const isEventCreator = event.organizer
     ? userId === event.organizer._id.toString()
     : false;
@@ -31,7 +29,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       />
       {/* IS EVENT CREATOR ... */}
       {isEventCreator && !hidePrice && (
-        <div className="absolute bottom-2 right-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
+        <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
             <Image
               src="/assets/icons/edit.svg"
