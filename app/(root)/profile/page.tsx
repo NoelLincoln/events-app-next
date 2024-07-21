@@ -2,7 +2,7 @@ import Collection from '@/components/shared/Collection';
 import { Button } from '@/components/ui/button';
 import { getEventsByUser } from '@/lib/actions/event.actions';
 import { getOrdersByUser } from '@/lib/actions/order.actions';
-import { IOrder } from '@/lib/database/models/order.model';
+import { IOrder } from '@/lib/mongodb/database/order.model';
 import { SearchParamProps } from '@/types';
 import { auth } from '@clerk/nextjs';
 import Link from 'next/link';
