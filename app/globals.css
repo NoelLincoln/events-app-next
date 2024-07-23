@@ -227,6 +227,15 @@
     .toggle-switch {
       @apply bg-gray-300 !important;
     }
+
+    /* ========================================== IMAGE STYLES */
+    .image-container {
+      @apply relative w-full h-[300px] md:h-[600px];
+    }
+
+    .image {
+      @apply object-fill object-center;
+    }
   }
 
   /* ========================================== CLERK STYLES */
