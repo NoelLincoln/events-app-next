@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-
 import { IEvent } from '@/lib/mongodb/database/models/event.model';
 import { Button } from '../ui/button';
 import { checkoutOrder } from '@/lib/actions/order.actions';
@@ -17,12 +16,14 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
 
     if (query.get('canceled')) {
       console.log(
-        'Order canceled -- continue to shop around and checkout when you’re ready.',
+        'Order canceled -- continue to shop around and checkout when you’re ready.'
       );
     }
   }, []);
 
-  const onCheckout = async () => {
+  const onCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     const order = {
       eventTitle: event.title,
       eventId: event._id,
@@ -35,7 +36,7 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
   };
 
   return (
-    <form action={onCheckout} method="post">
+    <form onSubmit={onCheckout}>
       <Button type="submit" role="link" size="lg" className="button sm:w-fit">
         {event.isFree ? 'Get Ticket' : 'Buy Ticket'}
       </Button>
